@@ -20,11 +20,27 @@ Scripts to produce analysis in the form of figures for certain GADGET3 simulatio
 		│	├── analysis_002.jl
 		│	└── ...
 		└── results 
-		├── analysis_001
+			├── analysis_001
 			│   └── ...
 			├── analysis_002
 			│   └── ...
 			└── ...
+			
+
+	.
+	├── sim_data
+	│   ├── TOC.md             
+	│   ├── faq.md        
+	│   ├── misc.md          
+	│   ├── usage.md            
+	│   └── ...                 
+	├── docs                   
+	│   ├── TOC.md           
+	│   ├── faq.md            
+	│   ├── misc.md             
+	│   ├── usage.md          
+	│   └── ...              
+	└── ...
 
 ## Documentation
 
