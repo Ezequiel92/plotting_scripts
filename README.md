@@ -6,25 +6,25 @@ Scripts to produce analysis in the form of figures for certain GADGET3 simulatio
 - The figures, GIF and videos generated will be saved saved in ..\results\analysis_XXX\ (he folder will be created if it doesn't exist) where XXX is the number of the script. 
 - The snapshots are expected to be located in ../../sim_data/run_00/, ../../sim_data/run_A_01/, etc. So, the expected file structure is:
 
-    .
-    ├── sim_data
-    │   ├── run_00/
-    │   ├── run_A_01/
-    │   └── ...
-    └── code
-        ├── GADGETPlotting 
-        │   ├──GADGETPlotting.jl
-        │   └── ...
-        ├── plotting_scripts
-        │   ├── analysis_001.jl
-        │   ├── analysis_002.jl
-        │   └── ...
-        └── results 
-            ├── analysis_001
-            │   └── ...
-            ├── analysis_002
-            │   └── ...
-            └── ...
+	.
+	├── sim_data
+	│   ├── run_00/
+	│   ├── run_A_01/
+	│   └── ...
+	└── code
+		├── GADGETPlotting 
+		│	├──GADGETPlotting.jl
+		│	└── ...
+		├── plotting_scripts
+		│	├── analysis_001.jl
+		│	├── analysis_002.jl
+		│	└── ...
+		└── results 
+		├── analysis_001
+			│   └── ...
+			├── analysis_002
+			│   └── ...
+			└── ...
 
 ## Documentation
 
