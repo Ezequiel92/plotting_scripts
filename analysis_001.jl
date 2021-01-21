@@ -18,8 +18,8 @@
   - Density and metallicity profiles for gas and stars, for each snapshot of each simulation. 
   - SFR vs time compared between simulations in a single figure. 
   
-  NOTE: profile plots have the animation capability disable until issue [3199](https://github.com/JuliaPlots/Plots.jl/issues/3199) 
-  is resolved =#
+  NOTE: profile plots have the animation capability disable until issue 
+  [3199](https://github.com/JuliaPlots/Plots.jl/issues/3199) is resolved =#
 
 include("../GADGETPlotting/GADGETPlotting.jl")
 
@@ -51,6 +51,8 @@ const FPS = 20
 # Star density field projected to the X-Y plane, for each simulation.
 ########################################################################################
 
+region_factor = [0.35, 0.2, 0.2, 0.2, 0.2, 0.2]
+
 for (i, sim) in enumerate(SNAP_PATH)
     starMapPipeline(SNAP_NAME[i], 
                     SIM_PATH * sim, 
@@ -58,7 +60,7 @@ for (i, sim) in enumerate(SNAP_PATH)
                     "density_anim", 
                     FPS,
                     plane="XY",
-                    region_factor=0.25,
+                    region_factor=region_factor[i],
                     sim_cosmo=SIM_COSMO,
                     region_size=BOX_SIZE)
 end
