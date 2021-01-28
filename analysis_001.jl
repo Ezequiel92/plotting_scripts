@@ -11,7 +11,7 @@
   ../../sim_data/run_old_model/
 
   The figures, GIF and videos will be store in ../../results/analysis_001/, in a folder 
-  structure named to describe the content within.
+  structure named to describe the contents within.
   
   Plots:
   - A density map of the stars projected in the XY plane, for each snapshot of each simulation.
@@ -57,7 +57,7 @@ region_factor = [0.35, 0.2, 0.2, 0.2, 0.2, 0.2]
 for (i, sim) in enumerate(SNAP_PATH)
     starMapPipeline(SNAP_NAME[i], 
                     SIM_PATH * sim, 
-                    BASE_OUT_PATH * sim * "stars/",
+                    BASE_OUT_PATH * sim,
                     "density_anim", 
                     FPS,
                     plane="XY",
@@ -67,7 +67,7 @@ for (i, sim) in enumerate(SNAP_PATH)
 end
 
 ########################################################################################
-# Density profile of stars, for each simulation.
+# Density profile of stars, comparing simulations.
 ########################################################################################
 pgfplotsx()
 
@@ -104,7 +104,7 @@ densityProfilePipeline( SNAP_NAME[2:end],
                         region_size=BOX_SIZE)
 
 ########################################################################################
-# Density profile of gas, for each simulation.
+# Density profile of the gas, comparing simulations.
 ########################################################################################
 
 # All models.
@@ -140,7 +140,7 @@ densityProfilePipeline( SNAP_NAME[2:end],
                         region_size=BOX_SIZE)
 
 ########################################################################################
-# Stars metallicity profile, for each simulation.
+# Stars metallicity profile, comparing simulations.
 ########################################################################################
 
 # All models.
@@ -174,7 +174,7 @@ metallicityProfilePipeline( SNAP_NAME[2:end],
                             region_size=BOX_SIZE)
 
 ########################################################################################
-# Gas metallicity profile, for each simulation.
+# Gas metallicity profile, comparing simulations.
 ########################################################################################
 
 # All models.
