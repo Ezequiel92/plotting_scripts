@@ -24,19 +24,19 @@ push!(LOAD_PATH, "../GADGETPlotting/src/")
 using GADGETPlotting, Unitful, UnitfulAstro, Plots
 
 "Base path for the directories where the figures and animations will be saved."
-const BASE_OUT_PATH = "../../plots/004/"
+const BASE_OUT_PATH = "../../plots/004"
 
 "Directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/"
+const BASE_SRC_PATH = "../../sim_data"
 
-"Directories containing the snapshot files, base names of the files and labels."
+"The directories containing the snapshot files and the base names of the files."
 const SNAPSHOTS = [
-    "run_00/" "snap" "run_00"
-    "run_old_model/" "snap" "run_old_model"
-    "run_A_01/" "snap" "run_A_01"
-    "run_C_01/" "snap" "run_C_01"
-    "run_E_01/" "snap" "run_E_01"
-    "run_F_01/" "snap" "run_F_01"
+    "run_00" "snap"
+    "run_old_model" "snap"
+    "run_A_01" "snap"
+    "run_C_01" "snap"
+    "run_E_01" "snap"
+    "run_F_01" "snap"
 ]
 
 """
@@ -52,8 +52,8 @@ const SIM_COSMO = 0
 const FPS = 20
 
 snap_paths = SNAPSHOTS[:, 1]
+labels = reshape(SNAPSHOTS[:, 1], 1, :)
 base_names = SNAPSHOTS[:, 2]
-labels = reshape(SNAPSHOTS[:, 3], 1, :)
 
 pgfplotsx()
 
@@ -64,10 +64,10 @@ pgfplotsx()
 for (i, run) in enumerate(snap_paths)
     temperatureHistogramPipeline(
         base_names[i],
-        BASE_SRC_PATH * run,
+        joinpath(BASE_SRC_PATH, run),
         "temperature_histogram_animation",
         FPS,
-        output_path = BASE_OUT_PATH * "temperature_histogram/" * run,
+        output_path = joinpath(BASE_OUT_PATH, "temperature_histogram", run),
         sim_cosmo = SIM_COSMO,
         step = 10,
     )
@@ -80,10 +80,10 @@ end
 for (i, run) in enumerate(snap_paths)
     rhoTempPipeline(
         base_names[i],
-        BASE_SRC_PATH * run,
+        joinpath(BASE_SRC_PATH, run),
         "rho_vs_temp_animation",
         FPS,
-        output_path = BASE_OUT_PATH * "rho_vs_temp/" * run,
+        output_path = joinpath(BASE_OUT_PATH, "rho_vs_temp", run),
         sim_cosmo = SIM_COSMO,
         step = 10,
     )
@@ -96,11 +96,12 @@ end
 for (i, run) in enumerate(snap_paths)
     KennicuttSchmidtPipeline(
         base_names[i],
-        BASE_SRC_PATH * run,
-        output_path = BASE_OUT_PATH * "Kennicutt_Schmidt/" * run,
+        joinpath(BASE_SRC_PATH, run),
+        output_path = joinpath(BASE_OUT_PATH, "Kennicutt_Schmidt", run),
         sim_cosmo = SIM_COSMO,
         step = 10,
         temp_filter = 2e4Unitful.K,
+        age_filter = 100UnitfulAstro.Myr,
         box_size = BOX_SIZE,
         bins = 80,
         time_unit = UnitfulAstro.yr,
@@ -114,11 +115,11 @@ end
 # All models.
 CMDFPipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "CMDF_animation",
     FPS,
     labels,
-    output_path = BASE_OUT_PATH * "CMDF/all_models/",
+    output_path = joinpath(BASE_OUT_PATH, "CMDF/all_models"),
     sim_cosmo = SIM_COSMO,
     step = 10,
 )
@@ -126,11 +127,11 @@ CMDFPipeline(
 # All but run_00 and run_F_01.
 CMDFPipeline(
     base_names[2:(end - 1)],
-    BASE_SRC_PATH .* snap_paths[2:(end - 1)],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:(end - 1)]),
     "CMDF_animation",
     FPS,
     labels[:, 2:(end - 1)],
-    output_path = BASE_OUT_PATH * "CMDF/new_models/",
+    output_path = joinpath(BASE_OUT_PATH, "CMDF/new_models"),
     sim_cosmo = SIM_COSMO,
     step = 10,
 )
@@ -138,11 +139,11 @@ CMDFPipeline(
 # All models, x axis normalized.
 CMDFPipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "CMDF_animation",
     FPS,
     labels,
-    output_path = BASE_OUT_PATH * "CMDF_normalized/all_models/",
+    output_path = joinpath(BASE_OUT_PATH, "CMDF_normalized/all_models"),
     sim_cosmo = SIM_COSMO,
     step = 10,
     x_norm = true,
@@ -151,11 +152,11 @@ CMDFPipeline(
 # All but run_00 and run_F_01, x axis normalized.
 CMDFPipeline(
     base_names[2:(end - 1)],
-    BASE_SRC_PATH .* snap_paths[2:(end - 1)],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:(end - 1)]),
     "CMDF_animation",
     FPS,
     labels[:, 2:(end - 1)],
-    output_path = BASE_OUT_PATH * "CMDF_normalized/new_models/",
+    output_path = joinpath(BASE_OUT_PATH, "CMDF_normalized/new_models"),
     sim_cosmo = SIM_COSMO,
     step = 10,
     x_norm = true,

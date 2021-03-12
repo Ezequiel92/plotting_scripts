@@ -26,19 +26,19 @@ push!(LOAD_PATH, "../GADGETPlotting/src/")
 using GADGETPlotting, Unitful, UnitfulAstro, Plots
 
 "Base path for the directories where the figures and animations will be saved."
-const BASE_OUT_PATH = "../../plots/001/"
+const BASE_OUT_PATH = "../../plots/001"
 
 "Directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/"
+const BASE_SRC_PATH = "../../sim_data"
 
-"Directories containing the snapshot files, base names of the files and labels."
+"The directories containing the snapshot files and the base names of the files."
 const SNAPSHOTS = [
-    "run_00/" "snap" "run_00"
-    "run_old_model/" "snap" "run_old_model"
-    "run_A_01/" "snap" "run_A_01"
-    "run_C_01/" "snap" "run_C_01"
-    "run_E_01/" "snap" "run_E_01"
-    "run_F_01/" "snap" "run_F_01"
+    "run_00" "snap"
+    "run_old_model" "snap"
+    "run_A_01" "snap"
+    "run_C_01" "snap"
+    "run_E_01" "snap"
+    "run_F_01" "snap"
 ]
 
 """
@@ -55,8 +55,8 @@ const FPS = 20
 
 box_factor = [0.35, 0.2, 0.2, 0.2, 0.2, 0.2]
 snap_paths = SNAPSHOTS[:, 1]
+labels = reshape(SNAPSHOTS[:, 1], 1, :)
 base_names = SNAPSHOTS[:, 2]
-labels = reshape(SNAPSHOTS[:, 3], 1, :)
 
 ############################################################################################
 # Star density field projected to the X-Y plane, for each simulation.
@@ -65,10 +65,10 @@ labels = reshape(SNAPSHOTS[:, 3], 1, :)
 for (i, run) in enumerate(snap_paths)
     starMapPipeline(
         base_names[i],
-        BASE_SRC_PATH * run,
+        joinpath(BASE_SRC_PATH, run),
         "density_animation",
         FPS,
-        output_path = BASE_OUT_PATH * "star_density_field/" * run,
+        output_path = joinpath(BASE_OUT_PATH, "star_density_field", run),
         sim_cosmo = SIM_COSMO,
         plane = "XY",
         box_size = BOX_SIZE,
@@ -84,12 +84,12 @@ pgfplotsx()
 
 compareSimulationsPipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     labels,
     "compare",
     "clock_time",
     "sfr",
-    output_path = BASE_OUT_PATH * "compare_sfr/",
+    output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
     sim_cosmo = SIM_COSMO,
     scale = (:identity, :log10),
     smooth_data = true,
@@ -103,12 +103,12 @@ compareSimulationsPipeline(
 # All models.
 densityProfilePipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
     FPS,
     "stars",
     labels,
-    output_path = BASE_OUT_PATH * "density_profile/all_models/stars/",
+    output_path = joinpath(BASE_OUT_PATH, "density_profile/all_models/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -121,12 +121,12 @@ densityProfilePipeline(
 # All but the run_00 model.
 densityProfilePipeline(
     base_names[2:end],
-    BASE_SRC_PATH .* snap_paths[2:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
     FPS,
     "stars",
     labels[:, 2:end],
-    output_path = BASE_OUT_PATH * "density_profile/new_models/stars/",
+    output_path = joinpath(BASE_OUT_PATH, "density_profile/new_models/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -143,12 +143,12 @@ densityProfilePipeline(
 # All models.
 densityProfilePipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
     FPS,
     "gas",
     labels,
-    output_path = BASE_OUT_PATH * "density_profile/all_models/gas/",
+    output_path = joinpath(BASE_OUT_PATH, "density_profile/all_models/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -161,12 +161,12 @@ densityProfilePipeline(
 # All but the run_00 model.
 densityProfilePipeline(
     base_names[2:end],
-    BASE_SRC_PATH .* snap_paths[2:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
     FPS,
     "gas",
     labels[:, 2:end],
-    output_path = BASE_OUT_PATH * "density_profile/new_models/gas/",
+    output_path = joinpath(BASE_OUT_PATH, "density_profile/new_models/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -183,12 +183,12 @@ densityProfilePipeline(
 # All models.
 metallicityProfilePipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
     FPS,
     "stars",
     labels,
-    output_path = BASE_OUT_PATH * "metallicity_profile/all_models/stars/",
+    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/all_models/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -200,12 +200,12 @@ metallicityProfilePipeline(
 # All but the run_00 model.
 metallicityProfilePipeline(
     base_names[2:end],
-    BASE_SRC_PATH .* snap_paths[2:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
     FPS,
     "stars",
     labels[:, 2:end],
-    output_path = BASE_OUT_PATH * "metallicity_profile/new_models/stars/",
+    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/new_models/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -221,12 +221,12 @@ metallicityProfilePipeline(
 # All models.
 metallicityProfilePipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
     FPS,
     "gas",
     labels,
-    output_path = BASE_OUT_PATH * "metallicity_profile/all_models/gas/",
+    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/all_models/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -238,12 +238,12 @@ metallicityProfilePipeline(
 # All but the run_00 and run_old_model models.
 metallicityProfilePipeline(
     base_names[3:end],
-    BASE_SRC_PATH .* snap_paths[3:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[3:end]),
     "animation",
     FPS,
     "gas",
     labels[:, 3:end],
-    output_path = BASE_OUT_PATH * "metallicity_profile/new_models/gas/",
+    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/new_models/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,

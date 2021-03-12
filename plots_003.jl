@@ -24,19 +24,19 @@ push!(LOAD_PATH, "../GADGETPlotting/src/")
 using GADGETPlotting, Unitful, UnitfulAstro, Plots
 
 "Base path for the directories where the figures and animations will be saved."
-const BASE_OUT_PATH = "../../plots/003/"
+const BASE_OUT_PATH = "../../plots/003"
 
 "Directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/"
+const BASE_SRC_PATH = "../../sim_data"
 
-"Directories containing the snapshot files, base names of the files and labels."
+"The directories containing the snapshot files and the base names of the files."
 const SNAPSHOTS = [
-    "run_00/" "snap" "run_00"
-    "run_old_model/" "snap" "run_old_model"
-    "run_A_01/" "snap" "run_A_01"
-    "run_C_01/" "snap" "run_C_01"
-    "run_E_01/" "snap" "run_E_01"
-    "run_F_01/" "snap" "run_F_01"
+    "run_00" "snap"
+    "run_old_model" "snap"
+    "run_A_01" "snap"
+    "run_C_01" "snap"
+    "run_E_01" "snap"
+    "run_F_01" "snap"
 ]
 
 """
@@ -52,8 +52,8 @@ const SIM_COSMO = 0
 const FPS = 20
 
 snap_paths = SNAPSHOTS[:, 1]
+labels = reshape(SNAPSHOTS[:, 1], 1, :)
 base_names = SNAPSHOTS[:, 2]
-labels = reshape(SNAPSHOTS[:, 3], 1, :)
 
 pgfplotsx()
 
@@ -64,12 +64,12 @@ pgfplotsx()
 # All models.
 massProfilePipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
     FPS,
     "stars",
     labels,
-    output_path = BASE_OUT_PATH * "mass_profile_all_models/stars/",
+    output_path = joinpath(BASE_OUT_PATH, "mass_profile_all_models/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -82,12 +82,12 @@ massProfilePipeline(
 # All but the run_00 model.
 massProfilePipeline(
     base_names[2:end],
-    BASE_SRC_PATH .* snap_paths[2:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
     FPS,
     "stars",
     labels[:, 2:end],
-    output_path = BASE_OUT_PATH * "mass_profile_new_models/stars/",
+    output_path = joinpath(BASE_OUT_PATH, "mass_profile_new_models/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -104,12 +104,12 @@ massProfilePipeline(
 # All models.
 massProfilePipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
     FPS,
     "gas",
     labels,
-    output_path = BASE_OUT_PATH * "mass_profile_all_models/gas/",
+    output_path = joinpath(BASE_OUT_PATH, "mass_profile_all_models/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -122,12 +122,12 @@ massProfilePipeline(
 # All but the run_00 model.
 massProfilePipeline(
     base_names[2:end],
-    BASE_SRC_PATH .* snap_paths[2:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
     FPS,
     "gas",
     labels[:, 2:end],
-    output_path = BASE_OUT_PATH * "mass_profile_new_models/gas/",
+    output_path = joinpath(BASE_OUT_PATH, "mass_profile_new_models/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,

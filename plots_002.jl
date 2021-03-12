@@ -22,27 +22,26 @@ push!(LOAD_PATH, "../GADGETPlotting/src/")
 using GADGETPlotting, Plots
 
 "Base path for the directories where the figures and animations will be saved."
-const BASE_OUT_PATH = "../../plots/002/"
+const BASE_OUT_PATH = "../../plots/002"
 
 "Directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/"
+const BASE_SRC_PATH = "../../sim_data"
 
-"Directories containing the snapshot files, base names of the files and labels."
+"The directories containing the snapshot files and the base names of the files."
 const SNAPSHOTS = [
-    "run_00/" "snap" "run_00"
-    "run_old_model/" "snap" "run_old_model"
-    "run_A_01/" "snap" "run_A_01"
-    "run_C_01/" "snap" "run_C_01"
-    "run_E_01/" "snap" "run_E_01"
-    "run_F_01/" "snap" "run_F_01"
+    "run_00" "snap"
+    "run_old_model" "snap"
+    "run_A_01" "snap"
+    "run_C_01" "snap"
+    "run_E_01" "snap"
+    "run_F_01" "snap"
 ]
 
 "Value of ComovingIntegrationOn: 0 -> Newtonian simulation, 1 -> Cosmological simulation."
 const SIM_COSMO = 0
 
-snap_paths = SNAPSHOTS[:, 1]
+snap_paths = labels = SNAPSHOTS[:, 1]
 base_names = SNAPSHOTS[:, 2]
-labels = SNAPSHOTS[:, 3]
 
 pgfplotsx()
 
@@ -52,10 +51,10 @@ pgfplotsx()
 
 sfrTxtPipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     1,
     [2, 5],
-    output_path = BASE_OUT_PATH * "mass_2vs5/",
+    output_path = joinpath(BASE_OUT_PATH, "mass_2vs5"),
     sim_cosmo = SIM_COSMO,
     title = labels,
     names = labels,
@@ -69,10 +68,10 @@ sfrTxtPipeline(
 
 sfrTxtPipeline(
     base_names,
-    BASE_SRC_PATH .* snap_paths,
+    joinpath.(BASE_SRC_PATH, snap_paths),
     1,
     [4, 6],
-    output_path = BASE_OUT_PATH * "sfr_4vs6/",
+    output_path = joinpath(BASE_OUT_PATH, "sfr_4vs6"),
     sim_cosmo = SIM_COSMO,
     title = labels,
     names = labels,
@@ -86,10 +85,10 @@ sfrTxtPipeline(
 
 sfrTxtPipeline(
     base_names[[1, 2]],
-    BASE_SRC_PATH .* snap_paths[[1, 2]],
+    joinpath.(BASE_SRC_PATH, snap_paths[[1, 2]]),
     1,
     [3, 4],
-    output_path = BASE_OUT_PATH * "sfr_3vs4/",
+    output_path = joinpath(BASE_OUT_PATH, "sfr_3vs4"),
     sim_cosmo = SIM_COSMO,
     title = labels[[1, 2]],
     names = labels[[1, 2]],
@@ -104,10 +103,10 @@ sfrTxtPipeline(
 
 sfrTxtPipeline(
     base_names[[1, 2]],
-    BASE_SRC_PATH .* snap_paths[[1, 2]],
+    joinpath.(BASE_SRC_PATH, snap_paths[[1, 2]]),
     1,
     [3, 4, 6],
-    output_path = BASE_OUT_PATH * "sfr_3vs4vs6/",
+    output_path = joinpath(BASE_OUT_PATH, "sfr_3vs4vs6"),
     sim_cosmo = SIM_COSMO,
     title = labels[[1, 2]],
     names = labels[[1, 2]],
@@ -121,10 +120,10 @@ sfrTxtPipeline(
 
 sfrTxtPipeline(
     base_names[3:end],
-    BASE_SRC_PATH .* snap_paths[3:end],
+    joinpath.(BASE_SRC_PATH, snap_paths[3:end]),
     1,
     [3],
-    output_path = BASE_OUT_PATH * "sfr_3/",
+    output_path = joinpath(BASE_OUT_PATH, "sfr_3"),
     sim_cosmo = SIM_COSMO,
     title = labels[3:end],
     names = labels[3:end],

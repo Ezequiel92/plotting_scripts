@@ -2,7 +2,7 @@
 
 [![ForTheBadge built-with-science](http://ForTheBadge.com/images/badges/built-with-science.svg)](https://GitHub.com/Ezequiel92/) 
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-julia.svg)](https://julialang.org)
+[![ForTheBadge made-with-julia](https://forthebadge.com/images/badges/made-with-julia.svg)](https://julialang.org)
 
 [![GitHub](https://img.shields.io/github/license/Ezequiel92/plotting_scripts?style=flat-square)](https://github.com/Ezequiel92/plotting_scripts/blob/main/LICENSE) [![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)](mailto:lozano.ez@gmail.com)
 
