@@ -6,20 +6,26 @@
 
 [![GitHub](https://img.shields.io/github/license/Ezequiel92/plotting_scripts?style=flat-square)](https://github.com/Ezequiel92/plotting_scripts/blob/main/LICENSE) [![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat-square)](mailto:lozano.ez@gmail.com)
 
-Scripts to make plots for a series of GADGET3 simulations. 
+Scripts to make plots from the data of GADGET3 simulations. 
 
-All make use of [GADGETPlotting.jl](https://github.com/Ezequiel92/GADGETPlotting). 
+All use of the module [GADGETPlotting.jl](https://github.com/Ezequiel92/GADGETPlotting). 
 
 ## Folders
 
-The figures, GIFs and videos generated will be saved in `../results/XXX/` (the folder will be created if it doesn't exist) where XXX is the number of the script. The snapshots are expected to be located in `../../sim_data/run_00/`, `../../sim_data/run_A_01/`, etc. So, the expected file structure is:
+The figures, GIFs and videos generated will be saved in `../plots/XXX/` (the folder will be created if it doesn't exist) where XXX is the number of the script. The snapshots are expected to be located in `../../sim_data/isolated/run_00/`, `../../sim_data/cosmological/run_A_01/`, etc. So, the expected file structure is:
 
     .
     ├── sim_data
-    │    ├── run_00
-    │    ├── run_A_01
+    │    ├── isolated
+	│    │    ├── run_00
+	│    │    ├── run_A_01
+	│	 │	  └── ...
+	│    ├── cosmological
+	│    │    ├── run_00
+	│    │    ├── run_A_01
+	│	 │	  └── ...
     │    └── ...
-    ├── results 
+    ├── plots 
     │    ├── 001
     │    │    ├── ...
     │    │    └── ...
