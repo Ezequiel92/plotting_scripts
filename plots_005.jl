@@ -15,11 +15,10 @@
     - Column 4: SFR probability
     - Column 5: actual mass.
     - Column 6: actual SFR.
-  
  =#
 
 push!(LOAD_PATH, "../GADGETPlotting/src/")
-using GADGETPlotting, Unitful, UnitfulAstro, Plots
+using GADGETPlotting, Unitful, UnitfulAstro
 
 "Path to the directory where the figures and animations will be saved."
 const BASE_OUT_PATH = "../../plots/005"

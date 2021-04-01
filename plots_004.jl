@@ -9,7 +9,7 @@
   ../../sim_data/isolated/run_C_01/
   ../../sim_data/isolated/run_E_01/
   ../../sim_data/isolated/run_F_01/
-  ../../sim_data/isolated/run_G_01/
+  ../../sim_data/isolated/run_G_01_tupac/
 
   The figures, GIFs and videos will be store in ../../plots/004/, 
   in directories named to describe the contents within.
@@ -22,7 +22,7 @@
  =#
 
 push!(LOAD_PATH, "../GADGETPlotting/src/")
-using GADGETPlotting, Unitful, UnitfulAstro, Plots
+using GADGETPlotting, Unitful, UnitfulAstro
 
 "Path to the directory where the figures and animations will be saved."
 const BASE_OUT_PATH = "../../plots/004"
@@ -41,7 +41,7 @@ const SNAPSHOTS = [
     "run_C_01" "snap"
     "run_E_01" "snap"
     "run_F_01" "snap"
-    "run_G_01" "snap"
+    "run_G_01_tupac" "snap"
 ]
 
 """
@@ -109,8 +109,8 @@ for (i, run) in enumerate(snap_paths)
         step = 10,
         temp_filter = 2e4Unitful.K,
         age_filter = 200UnitfulAstro.Myr,
-        box_size = BOX_SIZE,
-        bins = 80,
+        max_r = BOX_SIZE,
+        bins = ustrip(Int64, unit(BOX_SIZE), BOX_SIZE),
         time_unit = UnitfulAstro.Myr,
     )
 end

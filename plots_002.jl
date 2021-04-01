@@ -9,7 +9,7 @@
   ../../sim_data/isolated/run_C_01/
   ../../sim_data/isolated/run_E_01/
   ../../sim_data/isolated/run_F_01/
-  ../../sim_data/isolated/run_G_01/
+  ../../sim_data/isolated/run_G_01_tupac/
   
   The figures will be store in ../../plots/002/, in one folder 
   per simulation. 
@@ -24,7 +24,7 @@
  =#
 
 push!(LOAD_PATH, "../GADGETPlotting/src/")
-using GADGETPlotting, Plots
+using GADGETPlotting
 
 "Path to the directory where the figures and animations will be saved."
 const BASE_OUT_PATH = "../../plots/002"
@@ -43,7 +43,7 @@ const SNAPSHOTS = [
     "run_C_01" "snap_000"
     "run_E_01" "snap_000"
     "run_F_01" "snap_000"
-    "run_G_01" "snap_000"
+    "run_G_01_tupac" "snap_000"
 ]
 
 """

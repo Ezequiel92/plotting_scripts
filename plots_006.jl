@@ -3,19 +3,16 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The snapshots and related data files are located in:
-  ../../sim_data/isolated/run_00/
-  ../../sim_data/isolated/run_old_model/
-  ../../sim_data/isolated/run_A_01/
-  ../../sim_data/isolated/run_C_01/
-  ../../sim_data/isolated/run_E_01/
-  ../../sim_data/isolated/run_F_01/
   ../../sim_data/isolated/run_G_01_tupac/
+  ../../sim_data/isolated/run_G_01_tirant/
 
-  The figures, GIFs and videos will be store in ../../plots/001/, 
+  The figures, GIFs and videos will be store in ../../plots/006/, 
   in directories named to describe the contents within.
+
+  The idea is to check if the simulation G_01 gives the same results for both clusters, 
+  Tirant and Tupac.
   
   Plots:
-  - Star density field projected into the XY plane, for each simulation.
   - Comparison between simulations of SFR vs time.
   - Comparison between simulations of the density profile of stars.
   - Comparison between simulations of the density profile of gas.
@@ -30,7 +27,7 @@ push!(LOAD_PATH, "../GADGETPlotting/src/")
 using GADGETPlotting, Unitful, UnitfulAstro
 
 "Path to the directory where the figures and animations will be saved."
-const BASE_OUT_PATH = "../../plots/001"
+const BASE_OUT_PATH = "../../plots/006"
 
 "Path to the directory containing the simulations."
 const BASE_SRC_PATH = "../../sim_data/isolated"
@@ -40,13 +37,8 @@ The names of the directories containing the snapshot files
 and the base names of the files.
 """
 const SNAPSHOTS = [
-    "run_00" "snap"
-    "run_old_model" "snap"
-    "run_A_01" "snap"
-    "run_C_01" "snap"
-    "run_E_01" "snap"
-    "run_F_01" "snap"
     "run_G_01_tupac" "snap"
+    "run_G_01_tirant" "snap"
 ]
 
 """
@@ -65,34 +57,14 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-box_factor = [0.35, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
 snap_paths = SNAPSHOTS[:, 1]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
 base_names = SNAPSHOTS[:, 2]
 
 ############################################################################################
-# Star density field projected into the XY plane, for each simulation.
-############################################################################################
-
-for (i, run) in enumerate(snap_paths)
-    starMapPipeline(
-        base_names[i],
-        joinpath(BASE_SRC_PATH, run),
-        "density_animation",
-        FPS,
-        output_path = joinpath(BASE_OUT_PATH, "star_density_field", run),
-        sim_cosmo = SIM_COSMO,
-        plane = "XY",
-        box_size = BOX_SIZE,
-        box_factor = box_factor[i],
-    )
-end
-
-############################################################################################
 # Comparison between simulations of SFR vs time.
 ############################################################################################
 
-# All models.
 compareSimulationsPipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
@@ -107,26 +79,10 @@ compareSimulationsPipeline(
     bins = 60,
 )
 
-# All but the run_00 and run_F_01 models.
-compareSimulationsPipeline(
-    base_names[[2, 3, 4, 5, 7]],
-    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7]]),
-    labels[:, [2, 3, 4, 5, 7]],
-    "new_models",
-    "clock_time",
-    "sfr",
-    output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
-    sim_cosmo = SIM_COSMO,
-    scale = [:identity, :log10],
-    smooth_data = true,
-    bins = 60,
-)
-
 ############################################################################################
 # Comparison between simulations of the density profile of stars.
 ############################################################################################
 
-# All models.
 densityProfilePipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
@@ -134,7 +90,7 @@ densityProfilePipeline(
     FPS,
     "stars",
     labels,
-    output_path = joinpath(BASE_OUT_PATH, "density_profile/all_models/stars"),
+    output_path = joinpath(BASE_OUT_PATH, "density_profile/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -144,29 +100,10 @@ densityProfilePipeline(
     box_size = BOX_SIZE,
 )
 
-# All but the run_00 model.
-densityProfilePipeline(
-    base_names[2:end],
-    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
-    "animation",
-    FPS,
-    "stars",
-    labels[:, 2:end],
-    output_path = joinpath(BASE_OUT_PATH, "density_profile/new_models/stars"),
-    sim_cosmo = SIM_COSMO,
-    scale = :log10,
-    step = 10,
-    bins = 60,
-    factor = 4,
-    box_factor = 0.12,
-    box_size = BOX_SIZE,
-)
-
 ############################################################################################
 # Comparison between simulations of the density profile of gas.
 ############################################################################################
 
-# All models.
 densityProfilePipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
@@ -174,7 +111,7 @@ densityProfilePipeline(
     FPS,
     "gas",
     labels,
-    output_path = joinpath(BASE_OUT_PATH, "density_profile/all_models/gas"),
+    output_path = joinpath(BASE_OUT_PATH, "density_profile/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -184,29 +121,10 @@ densityProfilePipeline(
     box_size = BOX_SIZE,
 )
 
-# All but the run_00 model.
-densityProfilePipeline(
-    base_names[2:end],
-    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
-    "animation",
-    FPS,
-    "gas",
-    labels[:, 2:end],
-    output_path = joinpath(BASE_OUT_PATH, "density_profile/new_models/gas"),
-    sim_cosmo = SIM_COSMO,
-    scale = :log10,
-    step = 10,
-    bins = 60,
-    factor = 4,
-    box_factor = 0.3,
-    box_size = BOX_SIZE,
-)
-
 ############################################################################################
 # Comparison between simulations of the metallicity profile of stars.
 ############################################################################################
 
-# All models.
 metallicityProfilePipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
@@ -214,7 +132,7 @@ metallicityProfilePipeline(
     FPS,
     "stars",
     labels,
-    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/all_models/stars"),
+    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/stars"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
@@ -223,28 +141,10 @@ metallicityProfilePipeline(
     box_size = BOX_SIZE,
 )
 
-# All but the run_00 model.
-metallicityProfilePipeline(
-    base_names[2:end],
-    joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
-    "animation",
-    FPS,
-    "stars",
-    labels[:, 2:end],
-    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/new_models/stars"),
-    sim_cosmo = SIM_COSMO,
-    scale = :log10,
-    step = 10,
-    bins = 80,
-    box_factor = 0.15,
-    box_size = BOX_SIZE,
-)
-
 ############################################################################################
 # Comparison between simulations of the metallicity profile of the gas.
 ############################################################################################
 
-# All models.
 metallicityProfilePipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
@@ -252,29 +152,12 @@ metallicityProfilePipeline(
     FPS,
     "gas",
     labels,
-    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/all_models/gas"),
+    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/gas"),
     sim_cosmo = SIM_COSMO,
     scale = :log10,
     step = 10,
     bins = 80,
     box_factor = 3.0,
-    box_size = BOX_SIZE,
-)
-
-# All but the run_00 and run_old_model models.
-metallicityProfilePipeline(
-    base_names[3:end],
-    joinpath.(BASE_SRC_PATH, snap_paths[3:end]),
-    "animation",
-    FPS,
-    "gas",
-    labels[:, 3:end],
-    output_path = joinpath(BASE_OUT_PATH, "metallicity_profile/new_models/gas"),
-    sim_cosmo = SIM_COSMO,
-    scale = :log10,
-    step = 10,
-    bins = 80,
-    box_factor = 0.6,
     box_size = BOX_SIZE,
 )
 
