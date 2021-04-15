@@ -11,7 +11,7 @@
   ../../sim_data/isolated/run_F_01/
   ../../sim_data/isolated/run_G_01_tupac/
 
-  The figures, GIFs and videos will be store in ../../plots/001/, 
+  The figures, GIFs, and videos will be store in ../../plots/001/, 
   in directories named to describe the contents within.
   
   Plots:
@@ -22,7 +22,7 @@
   - Comparison between simulations of the metallicity profile of the stars.
   - Comparison between simulations of the metallicity profile of the gas.
   
-  NOTE: profile plots have the animation capability disable until issue 
+  NOTE: profile plots have the animation capability disable until the issue 
   [3199](https://github.com/JuliaPlots/Plots.jl/issues/3199) is resolved.
  =#
 
@@ -36,17 +36,17 @@ const BASE_OUT_PATH = "../../plots/001"
 const BASE_SRC_PATH = "../../sim_data/isolated"
 
 """
-The names of the directories containing the snapshot files 
-and the base names of the files.
+The names of the directories containing the snapshot files, 
+the base names of the files and the box factors.
 """
 const SNAPSHOTS = [
-    "run_00" "snap"
-    "run_old_model" "snap"
-    "run_A_01" "snap"
-    "run_C_01" "snap"
-    "run_E_01" "snap"
-    "run_F_01" "snap"
-    "run_G_01_tupac" "snap"
+    "run_00" "snap" 0.35
+    "run_old_model" "snap" 0.2
+    "run_A_01" "snap" 0.2
+    "run_C_01" "snap" 0.2
+    "run_E_01" "snap" 0.2
+    "run_F_01" "snap" 0.2
+    "run_G_01_tupac" "snap" 0.2
 ]
 
 """
@@ -65,10 +65,10 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-box_factor = [0.35, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
-snap_paths = SNAPSHOTS[:, 1]
+snap_paths = @view SNAPSHOTS[:, 1]
+base_names = @view SNAPSHOTS[:, 2]
+box_factor = @view SNAPSHOTS[:, 3]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
-base_names = SNAPSHOTS[:, 2]
 
 ############################################################################################
 # Star density field projected into the XY plane, for each simulation.

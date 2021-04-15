@@ -6,7 +6,7 @@
   ../../sim_data/isolated/run_G_01_tupac/
   ../../sim_data/isolated/run_G_01_tirant/
 
-  The figures, GIFs and videos will be store in ../../plots/006/, 
+  The figures, GIFs, and videos will be store in ../../plots/006/, 
   in directories named to describe the contents within.
 
   The idea is to check if the simulation G_01 gives the same results for both clusters, 
@@ -19,7 +19,7 @@
   - Comparison between simulations of the metallicity profile of the stars.
   - Comparison between simulations of the metallicity profile of the gas.
   
-  NOTE: profile plots have the animation capability disable until issue 
+  NOTE: profile plots have the animation capability disable until the issue 
   [3199](https://github.com/JuliaPlots/Plots.jl/issues/3199) is resolved.
  =#
 
@@ -57,9 +57,9 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-snap_paths = SNAPSHOTS[:, 1]
+snap_paths = @view SNAPSHOTS[:, 1]
+base_names = @view SNAPSHOTS[:, 2]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
-base_names = SNAPSHOTS[:, 2]
 
 ############################################################################################
 # Comparison between simulations of SFR vs time.

@@ -42,13 +42,14 @@ Value of ComovingIntegrationOn:
 """
 const SIM_COSMO = 1
 
-sim_paths = SNAPSHOTS[:, 1]
+sim_paths = @view SNAPSHOTS[:, 1]
+snap_paths = @view SNAPSHOTS[:, 2]
+
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
-snap_paths = SNAPSHOTS[:, 2]
 title = names = [
-    "mass_probability_vs_t", 
-    "SFR_per_particle_vs_t", 
-    "SFR_probability_vs_t", 
+    "mass_probability_vs_t",
+    "SFR_per_particle_vs_t",
+    "SFR_probability_vs_t",
     "actual_mass_vs_t",
     "actual_SFR_vs_t",
 ]

@@ -53,8 +53,8 @@ Value of ComovingIntegrationOn:
 """
 const SIM_COSMO = 0
 
-snap_paths = labels = SNAPSHOTS[:, 1]
-snaps = SNAPSHOTS[:, 2]
+snap_paths = @view SNAPSHOTS[:, 1]
+snaps = @view SNAPSHOTS[:, 2]
 
 ############################################################################################
 # Column 2 (mass probability) vs Column 5 (actual mass), for every model.
@@ -126,7 +126,7 @@ sfrTxtPipeline(
 )
 
 ############################################################################################
-# Column 3 (SFR per particle), for the A, C, E, F and G models.
+# Column 3 (SFR per particle), for the A, C, E, F, and G models.
 ############################################################################################
 
 sfrTxtPipeline(

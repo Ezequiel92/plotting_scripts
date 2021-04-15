@@ -47,9 +47,9 @@ Value of ComovingIntegrationOn:
 """
 const SIM_COSMO = 0
 
-snap_paths = SNAPSHOTS[:, 1]
+snap_paths = @view SNAPSHOTS[:, 1]
+base_names = @view SNAPSHOTS[:, 2]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
-base_names = SNAPSHOTS[:, 2]
 
 ############################################################################################
 # Comparison between simulations of star mass vs time.

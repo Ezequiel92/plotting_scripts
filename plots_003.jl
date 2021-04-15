@@ -11,14 +11,14 @@
   ../../sim_data/isolated/run_F_01/
   ../../sim_data/isolated/run_G_01_tupac/
 
-  The figures, GIFs and videos will be store in ../../plots/003/, 
+  The figures, GIFs, and videos will be store in ../../plots/003/, 
   in directories named to describe the contents within.
   
   Plots:
   - Comparison between simulations of the accumulated mass profile for the stars.
   - Comparison between simulations of the accumulated mass profile for the gas.
   
-  NOTE: profile plots have the animation capability disable until issue 
+  NOTE: profile plots have the animation capability disable until the issue 
   [3199](https://github.com/JuliaPlots/Plots.jl/issues/3199) is resolved.
  =#
 
@@ -61,9 +61,9 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-snap_paths = SNAPSHOTS[:, 1]
+snap_paths = @view SNAPSHOTS[:, 1]
+base_names = @view SNAPSHOTS[:, 2]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
-base_names = SNAPSHOTS[:, 2]
 
 ############################################################################################
 # Comparison between simulations of the accumulated mass profile for the stars.
