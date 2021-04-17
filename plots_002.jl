@@ -3,13 +3,14 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The snapshots and related files are located in:
-  ../../sim_data/isolated/run_00/
-  ../../sim_data/isolated/run_old_model/
-  ../../sim_data/isolated/run_A_01/
-  ../../sim_data/isolated/run_C_01/
-  ../../sim_data/isolated/run_E_01/
-  ../../sim_data/isolated/run_F_01/
-  ../../sim_data/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_00/
+  ../../sim_data/results/isolated/run_old_model/
+  ../../sim_data/results/isolated/run_A_01/
+  ../../sim_data/results/isolated/run_C_01/
+  ../../sim_data/results/isolated/run_E_01/
+  ../../sim_data/results/isolated/run_F_01/
+  ../../sim_data/results/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_A_02/
   
   The figures will be store in ../../plots/002/, in one folder 
   per simulation. 
@@ -30,7 +31,7 @@ using GADGETPlotting
 const BASE_OUT_PATH = "../../plots/002"
 
 "Path to the directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/isolated"
+const BASE_SRC_PATH = "../../sim_data/results/isolated"
 
 """
 The names of the directories containing the snapshot files 
@@ -44,6 +45,7 @@ const SNAPSHOTS = [
     "run_E_01" "snap_000"
     "run_F_01" "snap_000"
     "run_G_01_tupac" "snap_000"
+    "run_A_02" "snap_000"
 ]
 
 """
@@ -53,8 +55,8 @@ Value of ComovingIntegrationOn:
 """
 const SIM_COSMO = 0
 
-snap_paths = @view SNAPSHOTS[:, 1]
-snaps = @view SNAPSHOTS[:, 2]
+snap_paths = labels = SNAPSHOTS[:, 1]
+snaps = SNAPSHOTS[:, 2]
 
 ############################################################################################
 # Column 2 (mass probability) vs Column 5 (actual mass), for every model.

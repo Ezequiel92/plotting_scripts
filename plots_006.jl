@@ -3,8 +3,8 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The snapshots and related data files are located in:
-  ../../sim_data/isolated/run_G_01_tupac/
-  ../../sim_data/isolated/run_G_01_tirant/
+  ../../sim_data/results/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_G_01_tirant/
 
   The figures, GIFs, and videos will be store in ../../plots/006/, 
   in directories named to describe the contents within.
@@ -30,7 +30,7 @@ using GADGETPlotting, Unitful, UnitfulAstro
 const BASE_OUT_PATH = "../../plots/006"
 
 "Path to the directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/isolated"
+const BASE_SRC_PATH = "../../sim_data/results/isolated"
 
 """
 The names of the directories containing the snapshot files 
@@ -57,8 +57,8 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-snap_paths = @view SNAPSHOTS[:, 1]
-base_names = @view SNAPSHOTS[:, 2]
+snap_paths = SNAPSHOTS[:, 1]
+base_names = SNAPSHOTS[:, 2]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
 
 ############################################################################################

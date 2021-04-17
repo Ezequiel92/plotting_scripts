@@ -3,10 +3,10 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The snapshots and related files are located in:
-  ../../sim_data/isolated/run_00/
-  ../../sim_data/isolated/run_old_model/
-  ../../sim_data/isolated/run_A_01/
-  ../../sim_data/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_00/
+  ../../sim_data/results/isolated/run_old_model/
+  ../../sim_data/results/isolated/run_A_01/
+  ../../sim_data/results/isolated/run_G_01_tupac/
 
   The figures will be store in ../../plots/008/.
 
@@ -62,7 +62,7 @@ using GADGETPlotting, Unitful, UnitfulAstro, Glob
 const BASE_OUT_PATH = "../../plots/008"
 
 "Path to the directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/isolated"
+const BASE_SRC_PATH = "../../sim_data/results/isolated"
 
 """
 The names of the directories containing the snapshot files, 
@@ -94,9 +94,9 @@ Stellar age filters in Myr.
 """
 const age_filters = [7, 10, 20, 60, 100, 200, 500]
 
-simulations = @view SNAPSHOTS[:, 1]
-base_names = @view SNAPSHOTS[:, 2]
-max_sfr_times = @view SNAPSHOTS[:, 3]
+simulations = String.(SNAPSHOTS[:, 1])
+base_names = String.(SNAPSHOTS[:, 2])
+max_sfr_times = Float64.(SNAPSHOTS[:, 3])
 
 ############################################################################################
 # Kennicutt-Schmidt law (Σ_SFR vs. Σ_ρ), at approximately the time of maximum SFR, 

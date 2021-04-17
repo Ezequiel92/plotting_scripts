@@ -3,13 +3,14 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The snapshots and related data files are located in:
-  ../../sim_data/isolated/run_00/
-  ../../sim_data/isolated/run_old_model/
-  ../../sim_data/isolated/run_A_01/
-  ../../sim_data/isolated/run_C_01/
-  ../../sim_data/isolated/run_E_01/
-  ../../sim_data/isolated/run_F_01/
-  ../../sim_data/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_00/
+  ../../sim_data/results/isolated/run_old_model/
+  ../../sim_data/results/isolated/run_A_01/
+  ../../sim_data/results/isolated/run_C_01/
+  ../../sim_data/results/isolated/run_E_01/
+  ../../sim_data/results/isolated/run_F_01/
+  ../../sim_data/results/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_A_02/
 
   The figures, GIFs, and videos will be store in ../../plots/001/, 
   in directories named to describe the contents within.
@@ -33,7 +34,7 @@ using GADGETPlotting, Unitful, UnitfulAstro
 const BASE_OUT_PATH = "../../plots/001"
 
 "Path to the directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/isolated"
+const BASE_SRC_PATH = "../../sim_data/results/isolated"
 
 """
 The names of the directories containing the snapshot files, 
@@ -47,6 +48,7 @@ const SNAPSHOTS = [
     "run_E_01" "snap" 0.2
     "run_F_01" "snap" 0.2
     "run_G_01_tupac" "snap" 0.2
+    "run_A_02" "snap" 0.2
 ]
 
 """
@@ -65,10 +67,10 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-snap_paths = @view SNAPSHOTS[:, 1]
-base_names = @view SNAPSHOTS[:, 2]
-box_factor = @view SNAPSHOTS[:, 3]
-labels = reshape(SNAPSHOTS[:, 1], 1, :)
+snap_paths = String.(SNAPSHOTS[:, 1])
+base_names = String.(SNAPSHOTS[:, 2])
+box_factor = Float64.(SNAPSHOTS[:, 3])
+labels = String.(reshape(SNAPSHOTS[:, 1], 1, :))
 
 ############################################################################################
 # Star density field projected into the XY plane, for each simulation.
@@ -109,10 +111,25 @@ compareSimulationsPipeline(
 
 # All but the run_00 and run_F_01 models.
 compareSimulationsPipeline(
-    base_names[[2, 3, 4, 5, 7]],
-    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7]]),
-    labels[:, [2, 3, 4, 5, 7]],
+    base_names[[2, 3, 4, 5, 7, 8]],
+    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7, 8]]),
+    labels[:, [2, 3, 4, 5, 7, 8]],
     "new_models",
+    "clock_time",
+    "sfr",
+    output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
+    sim_cosmo = SIM_COSMO,
+    scale = [:identity, :log10],
+    smooth_data = true,
+    bins = 60,
+)
+
+# Compare the run_A.
+compareSimulationsPipeline(
+    base_names[[3, 8]],
+    joinpath.(BASE_SRC_PATH, snap_paths[[3, 8]]),
+    labels[:, [3, 8]],
+    "A_models",
     "clock_time",
     "sfr",
     output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),

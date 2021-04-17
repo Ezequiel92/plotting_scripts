@@ -3,13 +3,14 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The snapshots and related files are located in:
-  ../../sim_data/isolated/run_00/
-  ../../sim_data/isolated/run_old_model/
-  ../../sim_data/isolated/run_A_01/
-  ../../sim_data/isolated/run_C_01/
-  ../../sim_data/isolated/run_E_01/
-  ../../sim_data/isolated/run_F_01/
-  ../../sim_data/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_00/
+  ../../sim_data/results/isolated/run_old_model/
+  ../../sim_data/results/isolated/run_A_01/
+  ../../sim_data/results/isolated/run_C_01/
+  ../../sim_data/results/isolated/run_E_01/
+  ../../sim_data/results/isolated/run_F_01/
+  ../../sim_data/results/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_A_02/
 
   The figures, GIFs, and videos will be store in ../../plots/004/, 
   in directories named to describe the contents within.
@@ -28,7 +29,7 @@ using GADGETPlotting, Unitful, UnitfulAstro
 const BASE_OUT_PATH = "../../plots/004"
 
 "Path to the directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/isolated"
+const BASE_SRC_PATH = "../../sim_data/results/isolated"
 
 """
 The names of the directories containing the snapshot files 
@@ -42,6 +43,7 @@ const SNAPSHOTS = [
     "run_E_01" "snap"
     "run_F_01" "snap"
     "run_G_01_tupac" "snap"
+    "run_A_02" "snap"
 ]
 
 """
@@ -60,8 +62,8 @@ const SIM_COSMO = 0
 "Frame rate for the animations."
 const FPS = 20
 
-snap_paths = @view SNAPSHOTS[:, 1]
-base_names = @view SNAPSHOTS[:, 2]
+snap_paths = SNAPSHOTS[:, 1]
+base_names = SNAPSHOTS[:, 2]
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
 
 ############################################################################################
@@ -133,11 +135,11 @@ CMDFPipeline(
 
 # All but run_00 and run_F_01.
 CMDFPipeline(
-    base_names[[2, 3, 4, 5, 7]],
-    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7]]),
+    base_names[[2, 3, 4, 5, 7, 8]],
+    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7, 8]]),
     "CMDF_animation",
     FPS,
-    labels[:, [2, 3, 4, 5, 7]],
+    labels[:, [2, 3, 4, 5, 7, 8]],
     output_path = joinpath(BASE_OUT_PATH, "CMDF/new_models"),
     sim_cosmo = SIM_COSMO,
     step = 10,
@@ -158,11 +160,11 @@ CMDFPipeline(
 
 # All but run_00 and run_F_01, x axis normalized.
 CMDFPipeline(
-    base_names[[2, 3, 4, 5, 7]],
-    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7]]),
+    base_names[[2, 3, 4, 5, 7, 8]],
+    joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7, 8]]),
     "CMDF_animation",
     FPS,
-    labels[:, [2, 3, 4, 5, 7]],
+    labels[:, [2, 3, 4, 5, 7, 8]],
     output_path = joinpath(BASE_OUT_PATH, "CMDF_normalized/new_models"),
     sim_cosmo = SIM_COSMO,
     step = 10,

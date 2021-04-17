@@ -3,13 +3,14 @@
   GADGET3 simulations; using the module GADGETPlotting.jl.
 
   The sfr.txt files are located in:
-  ../../sim_data/cosmological/run_00/
-  ../../sim_data/cosmological/run_A_01/
+  ../../sim_data/results/cosmological/run_00/
+  ../../sim_data/results/cosmological/run_A_01/
 
   The figures will be store in ../../plots/005/.
   
   Plots:
-  - Comparison between models of column 2, 3, 4, 5 y 6 vs column 1 (time).
+  - Comparison between cosmological simulations A and 00 of 
+    column 2, 3, 4, 5 y 6 vs column 1 (time):
     - Column 2: mass probability.
     - Column 3: SFR per particle.
     - Column 4: SFR probability
@@ -24,7 +25,7 @@ using GADGETPlotting, Unitful, UnitfulAstro
 const BASE_OUT_PATH = "../../plots/005"
 
 "Path to the directory containing the simulations."
-const BASE_SRC_PATH = "../../sim_data/cosmological"
+const BASE_SRC_PATH = "../../sim_data/results/cosmological"
 
 """
 The names of the directories containing the snapshot files 
@@ -42,8 +43,8 @@ Value of ComovingIntegrationOn:
 """
 const SIM_COSMO = 1
 
-sim_paths = @view SNAPSHOTS[:, 1]
-snap_paths = @view SNAPSHOTS[:, 2]
+sim_paths = SNAPSHOTS[:, 1]
+snap_paths = SNAPSHOTS[:, 2]
 
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
 title = names = [
