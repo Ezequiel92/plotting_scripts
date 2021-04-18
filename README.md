@@ -10,7 +10,7 @@ Scripts for plotting the data of GADGET3 simulations.
 
 All make use of the module [GADGETPlotting.jl](https://github.com/Ezequiel92/GADGETPlotting). 
 
-## 📁 Folders
+## 📁 Directory structure
 
 The figures, GIFs, and videos generated will be saved in `../plots/XXX/` (the folder will be created if it doesn't exist) where XXX is the number of the script. The snapshots are expected to be located in `../../sim_data/isolated/run_00/`, `../../sim_data/cosmological/run_A_01/`, etc. So, the expected file structure is:
 
