@@ -12,8 +12,8 @@
 
   The images have three defining characteristics: simulation, time, and age filter.
   By default the function KennicuttSchmidtPipeline() will slice the images by 
-  simulation -> age filter -> time. This is what end up in the folder `all_Kennicutt_Schmidt`.
-  Given that we are interested too the moment of maximum SFR, we slice the results 
+  simulation -> age filter -> time. This is what ends up in the folder `all_Kennicutt_Schmidt`.
+  Given that we are interested in the moment of maximum SFR, we slice the results 
   as simulation -> age filter, at a fixed time (a different one for each simulation).
   This is what ends up in the folder `Kennicutt_Schmidt_at_max_sfr`. 
   
