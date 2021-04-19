@@ -131,7 +131,7 @@ for (simulation, base_name, max_sfr_time) in zip(simulations, base_names, max_sf
             temp_filter = Inf * Unitful.K,
             age_filter = age_filter * UnitfulAstro.Myr,
             max_r = BOX_SIZE,
-            bins = ustrip(Int64, unit(BOX_SIZE), BOX_SIZE),
+            bins = ustrip(Int64, unit(BOX_SIZE), BOX_SIZE) * 3,
             time_unit = UnitfulAstro.yr,
         )
 
