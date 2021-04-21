@@ -7,6 +7,7 @@
   ../../sim_data/results/isolated/run_old_model/
   ../../sim_data/results/isolated/run_A_01/
   ../../sim_data/results/isolated/run_G_01_tupac/
+  ../../sim_data/results/isolated/run_A_02/
 
   The figures will be store in ../../plots/008/.
 
@@ -74,6 +75,7 @@ const SNAPSHOTS = [
     "run_old_model" "snap" 150
     "run_A_01" "snap" 150
     "run_G_01_tupac" "snap" 150
+    "run_A_02" "snap" 150
 ]
 
 """
