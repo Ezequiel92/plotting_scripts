@@ -69,6 +69,8 @@ compareSimulationsPipeline(
     scale = [:identity, :log10],
     smooth_data = true,
     bins = 60,
+    text_quantity = "star_mass",
+    file_name = "star_mass",
 )
 
 println("Work done!")
