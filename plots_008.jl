@@ -12,7 +12,7 @@
   The figures will be store in ../../plots/008/.
 
   The images have three defining characteristics: simulation, time, and age filter.
-  By default the function KennicuttSchmidtPipeline() will slice the images by 
+  By default the function kennicutt_schmidt_pipeline() will slice the images by 
   simulation -> age filter -> time. This is what ends up in the folder `all_Kennicutt_Schmidt`.
   Given that we are interested in the moment of maximum SFR, we slice the results 
   as simulation -> age filter, at a fixed time (a different one for each simulation).
@@ -119,7 +119,7 @@ for (simulation, base_name, max_sfr_time) in zip(simulations, base_names, max_sf
     found = false
 
     for age_filter in age_filters
-        KennicuttSchmidtPipeline(
+        kennicutt_schmidt_pipeline(
             base_name,
             joinpath(BASE_SRC_PATH, simulation),
             output_path = joinpath(

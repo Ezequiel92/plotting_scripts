@@ -74,7 +74,7 @@
  # Star density field projected into the XY plane.
  ############################################################################################
  
- starMapPipeline(
+ star_map_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "density_animation",
@@ -90,7 +90,7 @@
  # Density profile of stars.
  ############################################################################################
  
- densityProfilePipeline(
+ density_profile_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "animation",
@@ -110,7 +110,7 @@
  # Density profile of gas.
  ############################################################################################
  
- densityProfilePipeline(
+ density_profile_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "animation",
@@ -130,7 +130,7 @@
  # Metallicity profile of stars.
  ############################################################################################
  
- metallicityProfilePipeline(
+ metallicity_profile_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "animation",
@@ -149,7 +149,7 @@
  # Metallicity profile of the gas.
  ############################################################################################
  
- metallicityProfilePipeline(
+ metallicity_profile_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "animation",
@@ -168,7 +168,7 @@
  # Column 2 (mass probability) vs Column 5 (actual mass).
  ############################################################################################
  
- sfrTxtPipeline(
+ sfr_txt_pipeline(
      [FIRST_SNAP],
      [joinpath(BASE_SRC_PATH, SIM_NAME)],
      1,
@@ -184,7 +184,7 @@
  # Column 4 (SFR probability) vs Column 6 (actual SFR).
  ############################################################################################
  
- sfrTxtPipeline(
+ sfr_txt_pipeline(
      [FIRST_SNAP],
      [joinpath(BASE_SRC_PATH, SIM_NAME)],
      1,
@@ -200,7 +200,7 @@
  # Accumulated mass profile for the stars.
  ############################################################################################
  
- massProfilePipeline(
+ mass_profile_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "animation",
@@ -220,7 +220,7 @@
  # Accumulated mass profile for the gas.
  ############################################################################################
  
- massProfilePipeline(
+ mass_profile_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "animation",
@@ -240,7 +240,7 @@
  # Normalized logarithm of the temperature histogram.
  ############################################################################################
  
- temperatureHistogramPipeline(
+ temperature_histogram_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "temperature_histogram_animation",
@@ -254,7 +254,7 @@
  # T vs. ρ.
  ############################################################################################
  
- rhoTempPipeline(
+ rho_temp_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "rho_vs_temp_animation",
@@ -268,7 +268,7 @@
  # Kennicutt-Schmidt law (Σ_SFR vs. Σ_ρ).
  ############################################################################################
  
- KennicuttSchmidtPipeline(
+ kennicutt_schmidt_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      output_path = joinpath(BASE_OUT_PATH, "Kennicutt_Schmidt"),
@@ -284,7 +284,7 @@
  # CMDF (cumulative metallicity distribution function).
  ############################################################################################
  
- CMDFPipeline(
+ cmdf_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "CMDF_animation",
@@ -295,7 +295,7 @@
  )
  
  # X axis normalized.
- CMDFPipeline(
+ cmdf_pipeline(
      BASE_NAME,
      joinpath(BASE_SRC_PATH, SIM_NAME),
      "CMDF_animation",
@@ -310,7 +310,7 @@
  # Star mass vs time.
  ############################################################################################
  
- compareSimulationsPipeline(
+ compare_simulations_pipeline(
      [BASE_NAME],
      [joinpath(BASE_SRC_PATH, SIM_NAME)],
      reshape([SIM_NAME], 1, 1),
@@ -330,7 +330,7 @@
  # SFR vs time.
  ############################################################################################
  
- compareSimulationsPipeline(
+ compare_simulations_pipeline(
      [BASE_NAME],
      [joinpath(BASE_SRC_PATH, SIM_NAME)],
      reshape([SIM_NAME], 1, 1),

@@ -65,7 +65,7 @@ labels = reshape(SNAPSHOTS[:, 1], 1, :)
 # Comparison between simulations of SFR vs time.
 ############################################################################################
 
-compareSimulationsPipeline(
+compare_simulations_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     labels,
@@ -83,7 +83,7 @@ compareSimulationsPipeline(
 # Comparison between simulations of the density profile of stars.
 ############################################################################################
 
-densityProfilePipeline(
+density_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -104,7 +104,7 @@ densityProfilePipeline(
 # Comparison between simulations of the density profile of gas.
 ############################################################################################
 
-densityProfilePipeline(
+density_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -125,7 +125,7 @@ densityProfilePipeline(
 # Comparison between simulations of the metallicity profile of stars.
 ############################################################################################
 
-metallicityProfilePipeline(
+metallicity_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -145,7 +145,7 @@ metallicityProfilePipeline(
 # Comparison between simulations of the metallicity profile of the gas.
 ############################################################################################
 
-metallicityProfilePipeline(
+metallicity_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",

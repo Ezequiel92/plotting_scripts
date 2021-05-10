@@ -77,7 +77,7 @@ labels = String.(reshape(SNAPSHOTS[:, 1], 1, :))
 ############################################################################################
 
 for (i, run) in enumerate(snap_paths)
-    starMapPipeline(
+    star_map_pipeline(
         base_names[i],
         joinpath(BASE_SRC_PATH, run),
         "density_animation",
@@ -95,7 +95,7 @@ end
 ############################################################################################
 
 # All models.
-compareSimulationsPipeline(
+compare_simulations_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     labels,
@@ -110,7 +110,7 @@ compareSimulationsPipeline(
 )
 
 # All but the run_00 and run_F_01 models.
-compareSimulationsPipeline(
+compare_simulations_pipeline(
     base_names[[2, 3, 4, 5, 7, 8]],
     joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7, 8]]),
     labels[:, [2, 3, 4, 5, 7, 8]],
@@ -125,7 +125,7 @@ compareSimulationsPipeline(
 )
 
 # Compare the run_A.
-compareSimulationsPipeline(
+compare_simulations_pipeline(
     base_names[[3, 8]],
     joinpath.(BASE_SRC_PATH, snap_paths[[3, 8]]),
     labels[:, [3, 8]],
@@ -144,7 +144,7 @@ compareSimulationsPipeline(
 ############################################################################################
 
 # All models.
-densityProfilePipeline(
+density_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -162,7 +162,7 @@ densityProfilePipeline(
 )
 
 # All but the run_00 model.
-densityProfilePipeline(
+density_profile_pipeline(
     base_names[2:end],
     joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
@@ -184,7 +184,7 @@ densityProfilePipeline(
 ############################################################################################
 
 # All models.
-densityProfilePipeline(
+density_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -202,7 +202,7 @@ densityProfilePipeline(
 )
 
 # All but the run_00 model.
-densityProfilePipeline(
+density_profile_pipeline(
     base_names[2:end],
     joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
@@ -224,7 +224,7 @@ densityProfilePipeline(
 ############################################################################################
 
 # All models.
-metallicityProfilePipeline(
+metallicity_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -241,7 +241,7 @@ metallicityProfilePipeline(
 )
 
 # All but the run_00 model.
-metallicityProfilePipeline(
+metallicity_profile_pipeline(
     base_names[2:end],
     joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
@@ -262,7 +262,7 @@ metallicityProfilePipeline(
 ############################################################################################
 
 # All models.
-metallicityProfilePipeline(
+metallicity_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -279,7 +279,7 @@ metallicityProfilePipeline(
 )
 
 # All but the run_00 and run_old_model models.
-metallicityProfilePipeline(
+metallicity_profile_pipeline(
     base_names[3:end],
     joinpath.(BASE_SRC_PATH, snap_paths[3:end]),
     "animation",

@@ -72,7 +72,7 @@ labels = reshape(SNAPSHOTS[:, 1], 1, :)
 ############################################################################################
 
 # All models.
-massProfilePipeline(
+mass_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -90,7 +90,7 @@ massProfilePipeline(
 )
 
 # All but the run_00 model.
-massProfilePipeline(
+mass_profile_pipeline(
     base_names[2:end],
     joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",
@@ -112,7 +112,7 @@ massProfilePipeline(
 ############################################################################################
 
 # All models.
-massProfilePipeline(
+mass_profile_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "animation",
@@ -130,7 +130,7 @@ massProfilePipeline(
 )
 
 # All but the run_00 model.
-massProfilePipeline(
+mass_profile_pipeline(
     base_names[2:end],
     joinpath.(BASE_SRC_PATH, snap_paths[2:end]),
     "animation",

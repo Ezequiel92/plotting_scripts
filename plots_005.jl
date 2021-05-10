@@ -59,7 +59,7 @@ title = names = [
 # Comparison between models of column 2, 3, 4, 5 y 6 vs column 1 (time).
 ############################################################################################
 
-sfrTxtPipeline(
+sfr_txt_pipeline(
     snap_paths,
     joinpath.(BASE_SRC_PATH, sim_paths),
     1,

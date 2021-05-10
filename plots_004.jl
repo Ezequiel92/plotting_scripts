@@ -71,7 +71,7 @@ labels = reshape(SNAPSHOTS[:, 1], 1, :)
 ############################################################################################
 
 for (i, run) in enumerate(snap_paths)
-    temperatureHistogramPipeline(
+    temperature_histogram_pipeline(
         base_names[i],
         joinpath(BASE_SRC_PATH, run),
         "temperature_histogram_animation",
@@ -87,7 +87,7 @@ end
 ############################################################################################
 
 for (i, run) in enumerate(snap_paths)
-    rhoTempPipeline(
+    rho_temp_pipeline(
         base_names[i],
         joinpath(BASE_SRC_PATH, run),
         "rho_vs_temp_animation",
@@ -103,7 +103,7 @@ end
 ############################################################################################
 
 for (i, run) in enumerate(snap_paths)
-    KennicuttSchmidtPipeline(
+    kennicutt_schmidt_pipeline(
         base_names[i],
         joinpath(BASE_SRC_PATH, run),
         output_path = joinpath(BASE_OUT_PATH, "Kennicutt_Schmidt", run),
@@ -122,7 +122,7 @@ end
 ############################################################################################
 
 # All models.
-CMDFPipeline(
+cmdf_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "CMDF_animation",
@@ -134,7 +134,7 @@ CMDFPipeline(
 )
 
 # All but run_00 and run_F_01.
-CMDFPipeline(
+cmdf_pipeline(
     base_names[[2, 3, 4, 5, 7, 8]],
     joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7, 8]]),
     "CMDF_animation",
@@ -146,7 +146,7 @@ CMDFPipeline(
 )
 
 # All models, x axis normalized.
-CMDFPipeline(
+cmdf_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     "CMDF_animation",
@@ -159,7 +159,7 @@ CMDFPipeline(
 )
 
 # All but run_00 and run_F_01, x axis normalized.
-CMDFPipeline(
+cmdf_pipeline(
     base_names[[2, 3, 4, 5, 7, 8]],
     joinpath.(BASE_SRC_PATH, snap_paths[[2, 3, 4, 5, 7, 8]]),
     "CMDF_animation",

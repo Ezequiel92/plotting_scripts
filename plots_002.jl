@@ -62,7 +62,7 @@ snaps = SNAPSHOTS[:, 2]
 # Column 2 (mass probability) vs Column 5 (actual mass), for every model.
 ############################################################################################
 
-sfrTxtPipeline(
+sfr_txt_pipeline(
     snaps,
     joinpath.(BASE_SRC_PATH, snap_paths),
     1,
@@ -79,7 +79,7 @@ sfrTxtPipeline(
 # Column 4 (SFR probability) vs Column 6 (actual SFR), for every model.
 ############################################################################################
 
-sfrTxtPipeline(
+sfr_txt_pipeline(
     snaps,
     joinpath.(BASE_SRC_PATH, snap_paths),
     1,
@@ -96,7 +96,7 @@ sfrTxtPipeline(
 # Column 3 (SFR per particle) vs Column 4 (SFR probability), for the old models.
 ############################################################################################
 
-sfrTxtPipeline(
+sfr_txt_pipeline(
     snaps[[1, 2]],
     joinpath.(BASE_SRC_PATH, snap_paths[[1, 2]]),
     1,
@@ -114,7 +114,7 @@ sfrTxtPipeline(
 # for the old models.
 ############################################################################################
 
-sfrTxtPipeline(
+sfr_txt_pipeline(
     snaps[[1, 2]],
     joinpath.(BASE_SRC_PATH, snap_paths[[1, 2]]),
     1,
@@ -131,7 +131,7 @@ sfrTxtPipeline(
 # Column 3 (SFR per particle), for the A, C, E, F, and G models.
 ############################################################################################
 
-sfrTxtPipeline(
+sfr_txt_pipeline(
     snaps[3:end],
     joinpath.(BASE_SRC_PATH, snap_paths[3:end]),
     1,

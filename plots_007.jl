@@ -57,7 +57,7 @@ labels = reshape(SNAPSHOTS[:, 1], 1, :)
 # Comparison between simulations of star mass vs time.
 ############################################################################################
 
-compareSimulationsPipeline(
+compare_simulations_pipeline(
     base_names,
     joinpath.(BASE_SRC_PATH, snap_paths),
     labels,
