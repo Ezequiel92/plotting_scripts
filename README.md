@@ -4,7 +4,7 @@
 
 [![ForTheBadge made-with-julia](https://forthebadge.com/images/badges/made-with-julia.svg)](https://julialang.org)
 
-[![GitHub](https://img.shields.io/github/license/Ezequiel92/plotting_scripts?style=flat&logo=GNU&labelColor=2B2D2F)](https://github.com/Ezequiel92/plotting_scripts/blob/main/LICENSE) [![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat)](mailto:lozano.ez@gmail.com)
+[![GitHub](https://img.shields.io/github/license/Ezequiel92/plotting_scripts?style=flat&logo=GNU&labelColor=2B2D2F)](https://github.com/Ezequiel92/plotting_scripts/blob/main/LICENSE) [![Maintenance](https://img.shields.io/maintenance/yes/2021?style=flat)](mailto:elozano@df.uba.ar)
 
 Scripts for plotting the data of GADGET3 simulations, using the module [GADGETPlotting.jl](https://github.com/Ezequiel92/GADGETPlotting). 
 
@@ -46,12 +46,6 @@ The figures, GIFs, and videos generated will be saved in `../plots/XXX/` (the fo
 ## 📘 Documentation
 
 A comment at the beginning of each script explains which figures will produce.
-
-## 📣 Contact
-
-[![image](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:lozano.ez@gmail.com)
-
-[![image](https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:lozano.ez@outlook.com)
 
 ## ⚠️ Warning
 
