@@ -104,7 +104,7 @@ compare_simulations_pipeline(
     "sfr",
     output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
     sim_cosmo = SIM_COSMO,
-    scale = [:identity, :log10],
+    scale = (:identity, :log10),
     smooth_data = true,
     bins = 60,
 )
@@ -119,7 +119,7 @@ compare_simulations_pipeline(
     "sfr",
     output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
     sim_cosmo = SIM_COSMO,
-    scale = [:identity, :log10],
+    scale = (:identity, :log10),
     smooth_data = true,
     bins = 60,
 )
@@ -134,7 +134,7 @@ compare_simulations_pipeline(
     "sfr",
     output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
     sim_cosmo = SIM_COSMO,
-    scale = [:identity, :log10],
+    scale = (:identity, :log10),
     smooth_data = true,
     bins = 60,
 )

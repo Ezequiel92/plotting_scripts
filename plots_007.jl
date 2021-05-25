@@ -66,7 +66,7 @@ compare_simulations_pipeline(
     "star_mass",
     output_path = joinpath(BASE_OUT_PATH, "compare_star_mass"),
     sim_cosmo = SIM_COSMO,
-    scale = [:identity, :log10],
+    scale = (:identity, :log10),
     smooth_data = true,
     bins = 60,
     text_quantity = "star_mass",
