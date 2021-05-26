@@ -114,7 +114,7 @@ sfr_txt_pipeline(
     output_path = joinpath(BASE_OUT_PATH, "sfr_txt"),
     sim_cosmo = SIM_COSMO,
     comparison_type = 1,
-    title,
+    titles,
     names,
     labels,
     bins = 20,
