@@ -286,7 +286,7 @@
  
  cmdf_pipeline(
      BASE_NAME,
-     joinpath(BASE_SRC_PATH, SIM_NAME),
+    joinpath(BASE_SRC_PATH, SIM_NAME),
      "CMDF_animation",
      FPS,
      output_path = joinpath(BASE_OUT_PATH, "CMDF"),
@@ -319,7 +319,7 @@
      "star_mass",
      output_path = BASE_OUT_PATH,
      sim_cosmo = SIM_COSMO,
-     scale = [:identity, :log10],
+     scale = (:identity, :log10),
      smooth_data = true,
      bins = 60,
      text_quantity = "star_mass",
@@ -339,7 +339,7 @@
      "sfr",
      output_path = BASE_OUT_PATH,
      sim_cosmo = SIM_COSMO,
-     scale = [:identity, :log10],
+     scale = (:identity, :log10),
      smooth_data = true,
      bins = 60,
      text_quantity = "sfr",
