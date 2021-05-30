@@ -23,6 +23,7 @@
     - Column 4: SFR probability
     - Column 5: actual mass.
     - Column 6: actual SFR.
+  - Comparison of CPU usage (`cs_sfr` process only).
   
   NOTE: profile plots have the animation capability disable until the issue 
   [3199](https://github.com/JuliaPlots/Plots.jl/issues/3199) is resolved.
@@ -54,13 +55,14 @@ Value of ComovingIntegrationOn:
 """
 const SIM_COSMO = XXX
 
-title = names = [
-    "mass_probability_vs_t",
-    "SFR_per_particle_vs_t",
-    "SFR_probability_vs_t",
-    "actual_mass_vs_t",
-    "actual_SFR_vs_t",
-]
+title =
+    names = [
+        "mass_probability_vs_t",
+        "SFR_per_particle_vs_t",
+        "SFR_probability_vs_t",
+        "actual_mass_vs_t",
+        "actual_SFR_vs_t",
+    ]
 
 sim_paths = SNAPSHOTS[:, 1]
 base_names = SNAPSHOTS[:, 2]
@@ -122,6 +124,17 @@ sfr_txt_pipeline(
     bins = 20,
     scale = (:identity, :log10),
     time_unit = UnitfulAstro.Gyr,
+)
+
+############################################################################################
+# CPU usage of the sub resolution routine.
+############################################################################################
+
+cpu_txt_pipeline(
+    joinpath.(BASE_SRC_PATH, sim_paths), 
+    "cs_sfr", 
+    labels, 
+    output_path = joinpath(BASE_OUT_PATH, "cpu_txt"),
 )
 
 println("Work done!")

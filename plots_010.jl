@@ -63,58 +63,64 @@ labels = reshape(SNAPSHOTS[:, 1], 1, :)
 # Comparison between simulations of SFR vs time.
 ############################################################################################
 
-compare_simulations_pipeline(
-    base_names,
-    joinpath.(BASE_SRC_PATH, sim_paths),
-    labels,
-    "all_models",
-    "clock_time",
-    "sfr",
-    output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
-    sim_cosmo = SIM_COSMO,
-    scale = (:identity, :log10),
-    smooth_data = false,
-    text_quantity = "sfr",
-    file_name = "sfr",
-)
+# compare_simulations_pipeline(
+#     base_names,
+#     joinpath.(BASE_SRC_PATH, sim_paths),
+#     labels,
+#     "all_models",
+#     "clock_time",
+#     "sfr",
+#     output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
+#     sim_cosmo = SIM_COSMO,
+#     scale = (:identity, :log10),
+#     smooth_data = false,
+#     text_quantity = "sfr",
+#     file_name = "sfr",
+# )
 
-############################################################################################
-# Comparison between simulations of star mass vs time.
-############################################################################################
+# ############################################################################################
+# # Comparison between simulations of star mass vs time.
+# ############################################################################################
 
-compare_simulations_pipeline(
-    base_names,
-    joinpath.(BASE_SRC_PATH, sim_paths),
-    labels,
-    "all_models",
-    "clock_time",
-    "star_mass",
-    output_path = joinpath(BASE_OUT_PATH, "compare_star_mass"),
-    sim_cosmo = SIM_COSMO,
-    scale = (:identity, :log10),
-    smooth_data = false,
-    text_quantity = "star_mass",
-    file_name = "star_mass",
-)
+# compare_simulations_pipeline(
+#     base_names,
+#     joinpath.(BASE_SRC_PATH, sim_paths),
+#     labels,
+#     "all_models",
+#     "clock_time",
+#     "star_mass",
+#     output_path = joinpath(BASE_OUT_PATH, "compare_star_mass"),
+#     sim_cosmo = SIM_COSMO,
+#     scale = (:identity, :log10),
+#     smooth_data = false,
+#     text_quantity = "star_mass",
+#     file_name = "star_mass",
+# )
 
-############################################################################################
-# Comparison between models of column 2, 3, 4, 5 y 6 vs column 1.
-############################################################################################
+# ############################################################################################
+# # Comparison between models of column 2, 3, 4, 5 y 6 vs column 1.
+# ############################################################################################
 
-sfr_txt_pipeline(
-    base_names .* "_000",
-    joinpath.(BASE_SRC_PATH, sim_paths),
-    1,
-    [2, 3, 4, 5, 6];
-    output_path = joinpath(BASE_OUT_PATH, "sfr_txt"),
-    sim_cosmo = SIM_COSMO,
-    comparison_type = 1,
-    titles,
-    names,
-    labels,
-    bins = 20,
-    scale = (:identity, :log10),
-    time_unit = UnitfulAstro.Gyr,
+# sfr_txt_pipeline(
+#     base_names .* "_000",
+#     joinpath.(BASE_SRC_PATH, sim_paths),
+#     1,
+#     [2, 3, 4, 5, 6];
+#     output_path = joinpath(BASE_OUT_PATH, "sfr_txt"),
+#     sim_cosmo = SIM_COSMO,
+#     comparison_type = 1,
+#     titles,
+#     names,
+#     labels,
+#     bins = 20,
+#     scale = (:identity, :log10),
+#     time_unit = UnitfulAstro.Gyr,
+# )
+
+cpu_txt_pipeline(
+    [joinpath(BASE_SRC_PATH, sim_paths[2])], 
+    ["cs_sfr"],
+    output_path = joinpath(BASE_OUT_PATH, "cpu_txt"),
 )
 
 println("Work done!")
