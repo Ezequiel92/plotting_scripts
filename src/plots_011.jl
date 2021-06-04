@@ -91,6 +91,7 @@ for (base_name, sim_path) in zip(base_names, sim_paths)
         ),
         step = 5,
         factor = 10,
+        y_scale = :log10,
     )
 end
 
