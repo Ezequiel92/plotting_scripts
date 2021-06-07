@@ -123,6 +123,7 @@ cpu_txt_pipeline(
     joinpath.(BASE_SRC_PATH, sim_paths),
     "cs_sfr",
     labels,
+    step = 100,
     output_path = joinpath(BASE_OUT_PATH, "cpu_txt"),
 )
 
