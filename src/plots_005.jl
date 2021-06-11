@@ -4,6 +4,7 @@
   The sfr.txt files are located in:
     ../../sim_data/results/cosmological/run_00/
     ../../sim_data/results/cosmological/run_A_01/
+    ../../sim_data/results/cosmological/run_G_01/
 
   The figures will be store in ../../plots/005/.
   
@@ -33,6 +34,7 @@ and the base name of the first snapshot.
 const SNAPSHOTS = [
     "run_00" "snapdir_000/snap_000.0"
     "run_A_01" "snapdir_000/snap_000.0"
+    "run_G_01" "snapdir_000/snap_000.0"
 ]
 
 """
