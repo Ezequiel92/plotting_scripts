@@ -16,6 +16,8 @@
       - Column 4: SFR probability
       - Column 5: actual mass.
       - Column 6: actual SFR.
+    - Comparison of star number vs. time.
+    - Comparison of CPU usage (`cs_sfr` process only).
  =#
 
 push!(LOAD_PATH, "../GADGETPlotting/src/")
@@ -32,9 +34,9 @@ Names of the directories containing the snapshot files
 and the base name of the first snapshot.
 """
 const SNAPSHOTS = [
-    "run_00" "snapdir_000/snap_000.0"
-    "run_A_01" "snapdir_000/snap_000.0"
-    "run_G_01" "snapdir_000/snap_000.0"
+    "run_00" "snapdir_000/snap_000.0" "snap"
+    "run_A_01" "snapdir_000/snap_000.0" "snap"
+    "run_G_01" "snapdir_000/snap_000.0" "snap"
 ]
 
 """
@@ -46,6 +48,7 @@ const SIM_COSMO = 1
 
 sim_paths = SNAPSHOTS[:, 1]
 snap_paths = SNAPSHOTS[:, 2]
+snap_names = SNAPSHOTS[:, 3]
 
 labels = reshape(SNAPSHOTS[:, 1], 1, :)
 titles =
@@ -75,6 +78,37 @@ sfr_txt_pipeline(
     bins = 50,
     scale = (:identity, :log10),
     time_unit = UnitfulAstro.Gyr,
+)
+
+############################################################################################
+# Comparison of star number vs. time
+############################################################################################
+
+compare_simulations_pipeline(
+    snap_names,
+    joinpath.(BASE_SRC_PATH, sim_paths),
+    labels,
+    "all_sims",
+    "clock_time",
+    "star_number",
+    output_path = joinpath(BASE_OUT_PATH, "compare_star_number"),
+    sim_cosmo = SIM_COSMO,
+    scale = (:identity, :log10),
+    smooth_data = false,
+    text_quantity = "star_number",
+    file_name = "star_number",
+)
+
+############################################################################################
+# Comparison of CPU usage (`cs_sfr` process only)
+############################################################################################
+
+cpu_txt_pipeline(
+    joinpath.(BASE_SRC_PATH, sim_paths),
+    "cs_misc",
+    labels,
+    step = 50,
+    output_path = joinpath(BASE_OUT_PATH, "cpu_txt"),
 )
 
 println("Work done!")
