@@ -21,6 +21,8 @@
       - Column 5: actual mass.
       - Column 6: actual SFR.
     - Comparison of CPU usage (`cs_sfr` process only).
+    - Star density field projected into the x-y plane, for each simulation.
+    - Kennicutt-Schmidt law (Σ_SFR vs. Σ_ρ), for every simulation.
  =#
 
 push!(LOAD_PATH, "../GADGETPlotting/src/")

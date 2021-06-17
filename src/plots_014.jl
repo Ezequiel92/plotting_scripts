@@ -3,12 +3,10 @@
 
   The snapshots and related data files are located in:
     ../../sim_data/results/isolated/M019_TEST
-    ../../sim_data/results/isolated/M016_TEST
-    ../../sim_data/results/isolated/M016_TEST_02
+    ../../sim_data/results/isolated/M019_TEST_02
     ../../sim_data/results/isolated/M016_TEST_03
-    ../../sim_data/results/isolated/M016_32_CPD0318
 
-  The resulting figures, GIFs, and videos will be store in ../../plots/013/.
+  The resulting figures, GIFs, and videos will be store in ../../plots/014/.
   
   Plots:
     - Comparison of SFR vs. time.
@@ -26,7 +24,7 @@ push!(LOAD_PATH, "../GADGETPlotting/src/")
 using GADGETPlotting, Unitful, UnitfulAstro
 
 "Path to the directory where the figures and animations will be saved."
-const BASE_OUT_PATH = "../../plots/013"
+const BASE_OUT_PATH = "../../plots/014"
 
 "Path to the directory containing the simulations."
 const BASE_SRC_PATH = "../../sim_data/results/isolated"
@@ -37,10 +35,8 @@ and the base names of the files.
 """
 const SNAPSHOTS = [
     "M019_TEST" "snap" "M019 - x2 CPU - Fast"   
-    "M016_TEST" "snap" "M016 - x1 CPU" 
-    "M016_TEST_02" "snap" "M016 - x2 CPU - Slow"  
+    "M019_TEST_02" "snap" "M019 - New use of nh0" 
     "M016_TEST_03" "snap" "M016 - x2 CPU - Fast" 
-    "M016_32_CPD0318" "snap" "M016 - Reference" 
 ]
 
 """
