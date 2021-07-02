@@ -39,8 +39,8 @@ const SNAPSHOTS = [
     "M016_32_CPD0318" "snap" "M016_32"
     "M016_64" "snap" "M016_64"
     "M016_64_SMOOTH" "snap" "M016_64 - Corrected SD"
-    # "M016_128" "snap" "M016_128"
-    # "M016_128_SMOOTH" "snap" "M016_128 - Corrected SD"
+    "M016_128" "snap" "M016_128"
+    "M016_128_SMOOTH" "snap" "M016_128 - Corrected SD"
 ]
 
 """
@@ -83,21 +83,21 @@ compare_simulations_pipeline(
     file_name = "sfr",
 )
 
-# # Simulations with resolution of 128x128x128 vs. the one with resolution of 32x32x32
-# compare_simulations_pipeline(
-#     base_names[[1, 4, 5]],
-#     joinpath.(BASE_SRC_PATH, sim_paths[[1, 4, 5]]),
-#     labels[:, [1, 4, 5]],
-#     "128vs32",
-#     "clock_time",
-#     "sfr",
-#     output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
-#     sim_cosmo = SIM_COSMO,
-#     scale = (:identity, :log10),
-#     smooth_data = false,
-#     text_quantity = "sfr",
-#     file_name = "sfr",
-# )
+# Simulations with resolution of 128x128x128 vs. the one with resolution of 32x32x32
+compare_simulations_pipeline(
+    base_names[[1, 4, 5]],
+    joinpath.(BASE_SRC_PATH, sim_paths[[1, 4, 5]]),
+    labels[:, [1, 4, 5]],
+    "128vs32",
+    "clock_time",
+    "sfr",
+    output_path = joinpath(BASE_OUT_PATH, "compare_sfr"),
+    sim_cosmo = SIM_COSMO,
+    scale = (:identity, :log10),
+    smooth_data = false,
+    text_quantity = "sfr",
+    file_name = "sfr",
+)
 
 ############################################################################################
 # Comparison of star mass vs. time
@@ -119,21 +119,21 @@ compare_simulations_pipeline(
     file_name = "star_mass",
 )
 
-# # Simulations with resolution of 128x128x128 vs. the one with resolution of 32x32x32
-# compare_simulations_pipeline(
-#     base_names[[1, 4, 5]],
-#     joinpath.(BASE_SRC_PATH, sim_paths[[1, 4, 5]]),
-#     labels[:, [1, 4, 5]],
-#     "128vs32",
-#     "clock_time",
-#     "star_mass",
-#     output_path = joinpath(BASE_OUT_PATH, "compare_star_mass"),
-#     sim_cosmo = SIM_COSMO,
-#     scale = (:identity, :log10),
-#     smooth_data = false,
-#     text_quantity = "star_mass",
-#     file_name = "star_mass",
-# )
+# Simulations with resolution of 128x128x128 vs. the one with resolution of 32x32x32
+compare_simulations_pipeline(
+    base_names[[1, 4, 5]],
+    joinpath.(BASE_SRC_PATH, sim_paths[[1, 4, 5]]),
+    labels[:, [1, 4, 5]],
+    "128vs32",
+    "clock_time",
+    "star_mass",
+    output_path = joinpath(BASE_OUT_PATH, "compare_star_mass"),
+    sim_cosmo = SIM_COSMO,
+    scale = (:identity, :log10),
+    smooth_data = false,
+    text_quantity = "star_mass",
+    file_name = "star_mass",
+)
 
 ############################################################################################
 # Comparison of column 2, 3, 4, 5 y 6 vs. column 1 (time)
@@ -156,22 +156,22 @@ sfr_txt_pipeline(
     time_unit = UnitfulAstro.Gyr,
 )
 
-# # Simulations with resolution of 128x128x128 vs. the one with resolution of 32x32x32
-# sfr_txt_pipeline(
-#     base_names[[1, 4, 5]] .* "_000",
-#     joinpath.(BASE_SRC_PATH, sim_paths[[1, 4, 5]]),
-#     1,
-#     [2, 3, 4, 5, 6];
-#     output_path = joinpath(BASE_OUT_PATH, "sfr_txt/128"),
-#     sim_cosmo = SIM_COSMO,
-#     comparison_type = 1,
-#     titles,
-#     names,
-#     labels[:, [1, 4, 5]],
-#     bins = 20,
-#     scale = (:identity, :log10),
-#     time_unit = UnitfulAstro.Gyr,
-# )
+# Simulations with resolution of 128x128x128 vs. the one with resolution of 32x32x32
+sfr_txt_pipeline(
+    base_names[[1, 4, 5]] .* "_000",
+    joinpath.(BASE_SRC_PATH, sim_paths[[1, 4, 5]]),
+    1,
+    [2, 3, 4, 5, 6];
+    output_path = joinpath(BASE_OUT_PATH, "sfr_txt/128"),
+    sim_cosmo = SIM_COSMO,
+    comparison_type = 1,
+    titles,
+    names,
+    labels = labels[:, [1, 4, 5]],
+    bins = 20,
+    scale = (:identity, :log10),
+    time_unit = UnitfulAstro.Gyr,
+)
 
 ############################################################################################
 # Comparison of CPU usage (`cs_sfr` process only)
